@@ -8,3 +8,12 @@ exports.getProducts = async (req, res) => {
     res.status(400).json({ msg: "An error occured. Please try again." });
   }
 };
+
+exports.getProduct = async (req, res) => {
+  try {
+    const product = await Model.Product.find({ _id: req.params.id });
+    res.status(200).json(product[0]);
+  } catch {
+    res.status(400).json({ msg: "An error occured. Please try again." });
+  }
+};
